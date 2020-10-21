@@ -2,38 +2,35 @@ export default class Menu {
     constructor(elem) {
         this.elem = elem;
         this._action = '';
+        this.modal = document.querySelector('.addTask');
+        this.overlay = document.querySelector('.overlay');
+        this.ul = document.querySelector('.listOfTasks');
+
         elem.addEventListener('click', this.setAction.bind(this));
     }
 
     addAtStart(target) {
-        let modal = document.querySelector('.addTask[data-modal="' + target.getAttribute('data-modal') + '"]');
+        this.modal = document.querySelector('.addTask[data-modal="' + target.getAttribute('data-modal') + '"]');
 
-        let buttonOK = document.querySelector('#add');
-        let overlay = document.querySelector('.overlay');
+        let buttonOK = this.modal.querySelector('#add');
 
-        modal.classList.add('active');
-        overlay.classList.add('active');
+        this.modal.classList.add('active');
+        this.overlay.classList.add('active');
 
         buttonOK.onclick = this.addTask.bind(this);
 
-        overlay.addEventListener('click', this.over);
+        this.overlay.onclick = this.over.bind(this);
     }
 
     over() {
-        let modal = document.querySelector('.addTask');
-        let overlay = document.querySelector('.overlay');
-
-        modal.classList.remove('active');
-        overlay.classList.remove('active');
+        this.modal.classList.remove('active');
+        this.overlay.classList.remove('active');
     }
 
     addTask() {
         let task = '';
 
-        let modal = document.querySelector('.addTask');
-        let overlay = document.querySelector('.overlay');
-
-        for (let child of modal.children) {
+        for (let child of this.modal.children) {
             if (child.type == 'text') {
                 task = child.value;
                 child.value = '';
@@ -41,36 +38,35 @@ export default class Menu {
         }
 
         if (task) {
-            modal.classList.remove('active');
-            overlay.classList.remove('active');
+            this.modal.classList.remove('active');
+            this.overlay.classList.remove('active');
 
             let newLi = document.createElement('li');
             newLi.textContent = task;
 
             if (this._action == 'addAtStart') {
-                if (document.querySelector('.listOfTasks').children.length != 0) {
-                    document.querySelector('.listOfTasks').children[0].before(newLi);
+                if (this.ul.children.length != 0) {
+                    this.ul.children[0].before(newLi);
                 } else {
-                    document.querySelector('.listOfTasks').append(newLi);
+                    this.ul.append(newLi);
                 }
             } else if (this._action == 'addAtEnd') {
-                document.querySelector('.listOfTasks').append(newLi);
+                this.ul.append(newLi);
             }
         }
     }
 
     addAtEnd(target) {
-        let modal = document.querySelector('.addTask[data-modal="' + target.getAttribute('data-modal') + '"]');
+        this.modal = document.querySelector('.addTask[data-modal="' + target.getAttribute('data-modal') + '"]');
 
-        let buttonOK = document.querySelector('#add');
-        let overlay = document.querySelector('.overlay');
+        let buttonOK = this.modal.querySelector('#add');
 
-        modal.classList.add('active');
-        overlay.classList.add('active');
+        this.modal.classList.add('active');
+        this.overlay.classList.add('active');
 
         buttonOK.onclick = this.addTask.bind(this);
 
-        overlay.addEventListener('click', this.over);
+        this.overlay.onclick = this.over.bind(this);
     }
 
     DeleteSelected() {
@@ -97,13 +93,12 @@ export default class Menu {
     }
 
     setAction(event) { 
-        const ul = document.querySelector('.listOfTasks');
         this._action = event.target.dataset.action;
         switch (this._action) {
             case "addAtStart":  this.addAtStart(event.target); break;
             case "addAtEnd": this.addAtEnd(event.target); break;
             case "DeleteSelected": this.DeleteSelected(); break;
-            case "sortSelected": this.sortSelected(ul); break;
+            case "sortSelected": this.sortSelected(this.ul); break;
             default: {
                 console.error('Cannot set action ', this._action);
             }
