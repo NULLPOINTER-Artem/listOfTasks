@@ -56,6 +56,7 @@ function addAtStart(event) {
         document.querySelector('.listOfTasks').append(newLi);
     }
 }
+
 function addAtEnd(event) {
     let task = "Hello, I'm new task";
 
@@ -64,45 +65,26 @@ function addAtEnd(event) {
 
     document.querySelector('.listOfTasks').append(newLi);
 }
+
 function DeleteSelected(event) {
     let selectedLI = document.querySelectorAll('.selected');
     selectedLI.forEach( (item) => {
         item.remove();
     })
 }
+
 function sortSelected(ul) {
     let selectedLI = document.querySelectorAll('.selected');
     let tempArr = Array.from(selectedLI);
 
-    // let LIs = ul.children;
-    // let indexs = '';
-    // [].forEach.call(LIs, (item, index) => {
-    //     if (item.classList.contains('selected')) {
-    //         indexs += index + " ";
-    //     } 
-    // })
-
-    // indexs = indexs.trim().split(' ');
-    // indexs = [].map.call(indexs, (item) => Number.parseInt(item));
-
-    // console.log(indexs);
-
     tempArr = tempArr.sort((a, b) => a.textContent > b.textContent ? 1 : -1);
 
-    // tempArr.forEach( (item, index) => {
-    //     if (indexs.includes(index)) {
-    //         ul.append(item);
-    //     }
-    // })
-
-    let i = 0;
     [].forEach.call(ul.children, (item) => {
         if (item.classList.contains('selected')) {
-            console.log(item);
-            let t = item;
-            item = tempArr[i];
-            tempArr[i++] = t;
-            //item.before(tempArr[i++]);
+            let newLI = document.createElement('li');
+            
+            newLI.textContent = tempArr.shift().textContent;
+            item.replaceWith(newLI);
         }
     })
 }
