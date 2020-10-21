@@ -1,0 +1,22 @@
+.selected {
+    background-color: #000;
+    color: #fff;
+    width: 150px;
+}
+
+.container {
+    display: inline-flex;
+}
+
+.listOfTasks {
+}
+
+.buttons {
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+li {
+    list-style-type: none;
+    cursor: pointer;
+}
