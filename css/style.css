@@ -1,22 +1,103 @@
 .selected {
-    background-color: #000;
-    color: #fff;
-    width: 150px;
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 4px;
+    font-weight: 550;
+}
+
+body {
+    background-color: #1f364c;
+    color: whitesmoke;
+}
+
+.overlay {
+    visibility: hidden;
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    cursor: url('../img/close.png'), default;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+}
+
+.addTask.active,
+.overlay.active {
+    visibility: visible;
+}
+
+.addTask {
+    visibility: hidden;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 300px;
+    height: 10px;
+
+    background-color:#161f27;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 30px;
+    color: whitesmoke;
+
+    z-index: 30;
+}
+
+.addTask button {
+    position: fixed;
+    top: 43%;
+    left: 70%;
 }
 
 .container {
-    display: inline-flex;
+    margin: 50px auto;
+    max-width: 600px;
+    min-width: 400px;
+    border: 0 solid #161f27;
+    box-shadow: 1px 1px 10px 2px #fff;
+    border-radius: 15px;
 }
 
 .listOfTasks {
+    margin: 0 38%;
+    padding-top: 1%;
+    padding-bottom: 2%;
 }
 
 .buttons {
-    margin-left: 50px;
-    margin-top: 50px;
+    position: absolute;
+    left: 75%;
+    top: 5%;
+}
+
+.buttons button {
+    display: block;
+    margin-top: 10px;
+    border: 0;
+    border-radius: 10px;
+    color: #000;
+    cursor: pointer;
+    width: 150px;
+    height: 30px;
+
+    background-image: linear-gradient(80deg, #161f27, whitesmoke);
+}
+
+#add {
+    cursor: pointer;
 }
 
 li {
     list-style-type: none;
     cursor: pointer;
+    width: 150px;
+    margin-top: 3px;
 }

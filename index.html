@@ -17,11 +17,19 @@
             <li>Feed my dog</li>
         </ul>
         <div class="buttons">
-            <button data-action="addAtStart">Add a task at start</button>
-            <button data-action="addAtEnd">Add a task at end</button>
+            <button data-action="addAtStart" data-modal="addElement">Add a task at start</button>
+            <button data-action="addAtEnd" data-modal="addElement">Add a task at end</button>
             <button data-action="DeleteSelected">Delete selected tasks</button>
             <button data-action="sortSelected">Sort selected tasks</button>
         </div>
     </div>
+
+    <div class="addTask" data-modal="addElement">
+        <label for="task">Task: </label>
+        <input type="text" name="task" placeholder="Add your task">
+        <button id="add">OK</button>
+    </div>
+
+    <div class="overlay"></div>
 </body>
 </html>
