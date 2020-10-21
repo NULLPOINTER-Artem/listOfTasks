@@ -91,6 +91,11 @@ body {
     background-image: linear-gradient(80deg, #161f27, #000);
 }
 
+.buttons button:hover {
+    font-weight: 550;
+    box-shadow: 1px 1px 5px 2px #fff;
+}
+
 #add {
     cursor: pointer;
 }
